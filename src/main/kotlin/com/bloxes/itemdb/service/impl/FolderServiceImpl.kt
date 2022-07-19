@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class FolderServiceImpl(private val folderRepository: FolderRepository, val validator: ValidatorUtil, val helper: Helper): FolderService {
+class FolderServiceImpl(private val folderRepository: FolderRepository, val helper: Helper): FolderService {
     override fun createFolder(createFolderRequest: CreateFolderRequest): FolderResponse {
-        validator.validate(createFolderRequest)
+//        validator.validate(createFolderRequest)
 
         val folder = Folder(
             id = UUID.randomUUID().toString(),
@@ -56,7 +56,7 @@ class FolderServiceImpl(private val folderRepository: FolderRepository, val vali
     }
 
     override fun updateFolder(id: String, updateFolderRequest: UpdateFolderRequest): FolderResponse {
-        validator.validate(updateFolderRequest)
+//        validator.validate(updateFolderRequest)
 
         val folder = helper.folderOrNull(folderRepository.findById(id).get())
         folder.folder_name = updateFolderRequest.folder_name

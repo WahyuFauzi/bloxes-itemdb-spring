@@ -9,5 +9,3 @@ class ItemdbApplication
 fun main(args: Array<String>) {
 	runApplication<ItemdbApplication>(*args)
 }
-
-//TODO implement error handling

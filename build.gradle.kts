@@ -20,7 +20,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("io.github.microutils:kotlin-logging-jvm:2.1.20")
+	implementation("io.github.microutils:kotlin-logging-jvm:2.1.23")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 	implementation("javax.validation:validation-api:2.0.1.Final")
 	implementation("com.squareup.okhttp3:okhttp:4.10.0")

@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class ItemServiceImpl(private val itemRepository: ItemRepository, val validator: ValidatorUtil, val helper: Helper): ItemService {
+class ItemServiceImpl(private val itemRepository: ItemRepository, val helper: Helper): ItemService {
     override fun createItem(createItemRequest: CreateItemRequest): ItemResponse {
-        validator.validate(createItemRequest)
+//        validator.validate(createItemRequest)
         val item = Item(
                 id = UUID.randomUUID().toString(),
                 item_name = createItemRequest.item_name,
@@ -32,7 +32,7 @@ class ItemServiceImpl(private val itemRepository: ItemRepository, val validator:
     }
 
     override fun updateItem(id: String, updateItemRequest: UpdateItemRequest): ItemResponse {
-        validator.validate(updateItemRequest)
+//        validator.validate(updateItemRequest)
         val item = helper.itemOrNull(itemRepository.findById(id).get())
         item.apply {
             item_name = updateItemRequest.item_name
