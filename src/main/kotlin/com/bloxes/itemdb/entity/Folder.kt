@@ -11,6 +11,7 @@ data class Folder (
         var folder_name: String,
         var nested_folders: List<NestedFolder>,
         var items: List<NestedItem>,
+//        var sharedUser: List<String>,
         val created_at: Date,
         var updated_at: Date
 )

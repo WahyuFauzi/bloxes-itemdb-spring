@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component
 import javax.validation.ConstraintViolationException
 import javax.validation.Validator
 
-//@Component the spring could not import validator
+@Component
 class ValidatorUtil(val validator: Validator) {
     fun validate(any: Any) {
         val result = validator.validate(any)

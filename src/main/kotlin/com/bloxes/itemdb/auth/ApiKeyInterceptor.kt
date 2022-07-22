@@ -12,11 +12,13 @@ class ApiKeyInterceptor: WebRequestInterceptor {
     override fun preHandle(request: WebRequest) {
         val apiKey = request.getHeader("X-Api-Key")
         if (apiKey == null) {
-            throw UnauthorizedException()
+            //throw UnauthorizedException()
+
+            // TODO implement JWT
         }
 
         if (apiKey !== "SECRET") {
-            throw UnauthorizedException()
+            //throw UnauthorizedException()
         }
     }
 
