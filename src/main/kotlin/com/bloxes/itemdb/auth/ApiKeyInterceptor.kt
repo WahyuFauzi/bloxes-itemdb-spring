@@ -1,6 +1,5 @@
 package com.bloxes.itemdb.auth
 
-import com.bloxes.itemdb.delete.UnauthorizedException
 import org.springframework.stereotype.Component
 import org.springframework.ui.ModelMap
 import org.springframework.web.context.request.WebRequest

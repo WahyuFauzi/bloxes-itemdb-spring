@@ -1,4 +1,4 @@
-package com.bloxes.itemdb.delete
+package com.bloxes.itemdb.error
 
 class NotFoundException: Exception() {
 }

@@ -1,7 +1,7 @@
 package com.bloxes.itemdb.controller
 
-import com.bloxes.itemdb.delete.NotFoundException
-import com.bloxes.itemdb.delete.UnauthorizedException
+import com.bloxes.itemdb.error.NotFoundException
+import com.bloxes.itemdb.error.UnauthorizedException
 import com.bloxes.itemdb.model.WebResponse
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
