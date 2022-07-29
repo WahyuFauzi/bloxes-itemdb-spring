@@ -10,9 +10,11 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.springframework.web.bind.annotation.*
 
+@CrossOrigin(origins = ["*"])
 @RestController
 @RequestMapping(value = ["/api/v1/folder"])
 class FolderController(private val folderService: FolderService, private val itemService: ItemService) {
+
     @PostMapping(
         value = [""],
         produces = ["application/json"],
@@ -26,7 +28,6 @@ class FolderController(private val folderService: FolderService, private val ite
             data = folderResponse
         )
     }
-
     @GetMapping(
         value = ["/{folderId}"],
         produces = ["application/json"]

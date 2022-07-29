@@ -7,6 +7,7 @@ import com.bloxes.itemdb.model.item.UpdateItemRequest
 import com.bloxes.itemdb.service.ItemService
 import org.springframework.web.bind.annotation.*
 
+@CrossOrigin(origins = ["*"])
 @RestController
 @RequestMapping(value = ["/api/v1/item"])
 class ItemController(private val itemService: ItemService) {
