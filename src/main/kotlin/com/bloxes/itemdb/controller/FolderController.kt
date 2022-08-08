@@ -32,13 +32,18 @@ class FolderController(private val folderService: FolderService, private val ite
         value = ["/{folderId}"],
         produces = ["application/json"]
     )
-    fun getFolder(@PathVariable("folderId") id: String): WebResponse<FolderResponse> {
-        val folderResponse = folderService.getFolder(id)
-        return WebResponse(
-            code = 200,
-            status = "OK",
-            data = folderResponse
-        )
+    fun getFolder(@PathVariable("folderId") id: String): String
+    //: WebResponse<FolderResponse> 
+    {
+        println(id) 
+        return "test"
+      
+      //val folderResponse = folderService.getFolder(id)
+        //return WebResponse(
+        //    code = 200,
+        //    status = "OK",
+        //    data = folderResponse
+        //)
     }
 
     @GetMapping(
