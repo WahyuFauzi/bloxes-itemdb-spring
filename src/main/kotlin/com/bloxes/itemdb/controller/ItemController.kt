@@ -27,10 +27,10 @@ class ItemController(private val itemService: ItemService) {
     }
 
     @GetMapping(
-            value = ["/{itemId}"],
+            value = [""],
             produces = ["application/json"]
     )
-    fun getItem(@PathVariable("itemId") id: String): WebResponse<ItemResponse> {
+    fun getItem(@RequestParam("itemId") id: String): WebResponse<ItemResponse> {
         val itemResponse = itemService.getItem(id)
         return WebResponse(
                 code = 200,
@@ -40,11 +40,11 @@ class ItemController(private val itemService: ItemService) {
     }
 
     @PutMapping(
-            value = ["/{itemId}"],
+            value = [""],
             produces = ["application/json"],
             consumes = ["application/json"]
     )
-    fun updateItem(@PathVariable("itemId") id: String, @RequestBody updateItemRequest: UpdateItemRequest): WebResponse<ItemResponse> {
+    fun updateItem(@RequestParam("itemId") id: String, @RequestBody updateItemRequest: UpdateItemRequest): WebResponse<ItemResponse> {
         val itemResponse = itemService.updateItem(id, updateItemRequest)
         return WebResponse(
                 code = 200,
@@ -54,9 +54,9 @@ class ItemController(private val itemService: ItemService) {
     }
 
     @DeleteMapping(
-            value = ["/{itemId}"]
+            value = [""]
     )
-    fun deleteItem(@PathVariable("itemId") id: String): WebResponse<String> {
+    fun deleteItem(@RequestParam("itemId") id: String): WebResponse<String> {
         itemService.deleteItem(id)
         return WebResponse(
                 code = 200,

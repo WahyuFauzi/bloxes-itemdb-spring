@@ -8,13 +8,13 @@ import com.bloxes.itemdb.service.FolderService
 import com.bloxes.itemdb.service.ItemService
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.*
 
 @CrossOrigin(origins = ["*"])
 @RestController
 @RequestMapping(value = ["/api/v1/folder"])
 class FolderController(private val folderService: FolderService, private val itemService: ItemService) {
-
     @PostMapping(
         value = [""],
         produces = ["application/json"],
@@ -29,25 +29,20 @@ class FolderController(private val folderService: FolderService, private val ite
         )
     }
     @GetMapping(
-        value = ["/{folderId}"],
+        value = [""],
         produces = ["application/json"]
     )
-    fun getFolder(@PathVariable("folderId") id: String): String
-    //: WebResponse<FolderResponse> 
-    {
-        println(id) 
-        return "test"
-      
-      //val folderResponse = folderService.getFolder(id)
-        //return WebResponse(
-        //    code = 200,
-        //    status = "OK",
-        //    data = folderResponse
-        //)
+    fun getFolder(@RequestParam("folderId") id: String): WebResponse<FolderResponse>{
+        val folderResponse = folderService.getFolder(id)
+        return WebResponse(
+            code = 200,
+            status = "OK",
+            data = folderResponse
+        )
     }
 
     @GetMapping(
-        value = ["/list-nested/{folderId}"],
+        value = ["/list-nested"],
         produces = ["application/json"]
     )
     fun getListNestedFolders(@PathVariable("folderId") id: String): WebResponse<List<String>> {
@@ -62,11 +57,11 @@ class FolderController(private val folderService: FolderService, private val ite
     }
 
     @PutMapping(
-        value = ["/{folderId}"],
+        value = [""],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun updateFolder(@PathVariable("folderId") id: String, @RequestBody updateFolderRequest: UpdateFolderRequest): WebResponse<FolderResponse> {
+    fun updateFolder(@RequestParam("folderId") id: String, @RequestBody updateFolderRequest: UpdateFolderRequest): WebResponse<FolderResponse> {
         val folderResponse = folderService.updateFolder(id, updateFolderRequest)
         return WebResponse(
             code = 200,
@@ -76,9 +71,9 @@ class FolderController(private val folderService: FolderService, private val ite
     }
 
     @DeleteMapping(
-        value = ["/{folderId}"]
+        value = [""]
     )
-    fun deleteFolder(@PathVariable("folderId") id: String): WebResponse<String> {
+    fun deleteFolder(@RequestParam("folderId") id: String): WebResponse<String> {
         folderService.deleteFolder(id)
         return WebResponse(
             code = 200,
@@ -88,7 +83,7 @@ class FolderController(private val folderService: FolderService, private val ite
     }
 
     @DeleteMapping(
-        value = ["/delete-with-nested/{folderId}"]
+        value = ["/delete-with-nested"]
     )
     fun deleteFolderWithNestedItem(@PathVariable("folderId") id: String): WebResponse<String> {
         var undiscovered = mutableListOf(id)
