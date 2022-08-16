@@ -8,6 +8,6 @@ data class FolderResponse(
         val folder_name: String,
         val nested_folders: List<NestedFolder>,
         val items: List<NestedItem>,
-        val created_at: Date,
-        val updated_at: Date
+        val created_at: String,
+        val updated_at: String
 )

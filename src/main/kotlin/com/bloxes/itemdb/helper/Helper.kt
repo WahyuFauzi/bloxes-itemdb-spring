@@ -37,12 +37,4 @@ class Helper {
             return folder
         }
     }
-
-    fun itemOrNull(item: Item): Item {
-        if(item === null) {
-            throw NotFoundException()
-        } else {
-            return item
-        }
-    }
 }

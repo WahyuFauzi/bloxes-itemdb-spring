@@ -7,44 +7,48 @@ import com.bloxes.itemdb.model.folder.FolderResponse
 import com.bloxes.itemdb.model.folder.UpdateFolderRequest
 import com.bloxes.itemdb.repository.FolderRepository
 import com.bloxes.itemdb.service.FolderService
-import com.bloxes.itemdb.validator.ValidatorUtil
+import com.bloxes.userdb.helper.DateHelper
+import com.bloxes.userdb.helper.RepositoryHelper
+import com.bloxes.userdb.helper.UUIDHelper
 import kotlinx.coroutines.*
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
-class FolderServiceImpl(private val folderRepository: FolderRepository, val helper: Helper): FolderService {
+class FolderServiceImpl(
+    private val folderRepository: FolderRepository,
+    val dateHelper: DateHelper,
+    val repoHelper: RepositoryHelper,
+    val uuidHelper: UUIDHelper,
+    val helper: Helper
+    ) : FolderService {
     override fun createFolder(createFolderRequest: CreateFolderRequest): FolderResponse {
-
         val folder = Folder(
-            id = UUID.randomUUID().toString(),
+            id = uuidHelper.getRandomUUID(),
             folder_name = createFolderRequest.folder_name,
             nested_folders = listOf(),
             items = listOf(),
-            created_at = Date(),
-            updated_at = Date()
+            created_at = dateHelper.getCurrentDateInString(),
+            updated_at = dateHelper.getCurrentDateInString()
         )
 
-        runBlocking {
-            launch { folderRepository.insert(folder) }
-        }
+        folderRepository.insert(folder)
 
         return helper.folderToFolderResponse(folder)
     }
 
     override fun getFolder(id: String): FolderResponse {
-        val folder =  helper.folderOrNull(folderRepository.findById(id).get())
+        val folder = helper.folderOrNull(folderRepository.findById(id).get())
         return helper.folderToFolderResponse(folder)
     }
 
     override fun getListNestedFolders(undiscovered: MutableList<String>, discovered: MutableList<String>) {
         // if undiscovered is not empty, then run this code asynchronously, if its empty then break the loop
-        if(undiscovered.size > 0){
+        if (undiscovered.size > 0) {
             runBlocking {
                 undiscovered.map {
                     async {
                         discovered.add(it) // add the undiscovered to discovered
-                        addIdToUndiscovered(undiscovered, it) // add the nested folders id to undiscovered
+                        repoHelper.addIdToUndiscovered(undiscovered, it) // add the nested folders id to undiscovered
                         undiscovered.remove(it)// delete the already discovered id from undiscovered
                     }
                 }.awaitAll()
@@ -55,33 +59,17 @@ class FolderServiceImpl(private val folderRepository: FolderRepository, val help
     }
 
     override fun updateFolder(id: String, updateFolderRequest: UpdateFolderRequest): FolderResponse {
-
         val folder = helper.folderOrNull(folderRepository.findById(id).get())
         folder.folder_name = updateFolderRequest.folder_name
         folder.nested_folders = updateFolderRequest.nested_folders
         folder.items = updateFolderRequest.items
-        folder.updated_at = Date()
-        runBlocking {
-            launch {
-                folderRepository.save(folder)
-            }
-        }
+        folder.updated_at = dateHelper.getCurrentDateInString()
+
+        folderRepository.save(folder)
         return helper.folderToFolderResponse(folder)
     }
 
     override fun deleteFolder(id: String) {
-        runBlocking {
-            launch {
-                folderRepository.deleteById(id)
-            }
-        }
-    }
-
-    // should I modularize this method?
-    suspend fun addIdToUndiscovered(undiscovered: MutableList<String>, id: String) {
-        val folder =  folderRepository.findById(id).get()
-        folder.nested_folders.map {
-            undiscovered.add(it.id)
-        }
+        folderRepository.deleteById(id)
     }
 }

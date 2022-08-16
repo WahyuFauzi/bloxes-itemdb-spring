@@ -8,6 +8,6 @@ data class Item (
         val id: String,
         var item_name: String,
         var item_total_size: Number,
-        val created_at: Date,
-        var updated_at: Date
+        val created_at: String,
+        var updated_at: String
         )
