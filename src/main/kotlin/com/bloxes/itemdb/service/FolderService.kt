@@ -9,7 +9,7 @@ interface FolderService {
 
     fun getFolder(id: String): FolderResponse
 
-    fun getListNestedFolders(undiscovered: MutableList<String>, discovered: MutableList<String>)
+    fun getListNestedFolders(id: String): MutableList<String>
 
     fun updateFolder(id: String, updateFolderRequest: UpdateFolderRequest): FolderResponse
 

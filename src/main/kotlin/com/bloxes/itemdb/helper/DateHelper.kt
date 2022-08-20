@@ -1,4 +1,4 @@
-package com.bloxes.userdb.helper
+package com.bloxes.itemdb.helper
 
 import org.springframework.stereotype.Component
 import java.util.*

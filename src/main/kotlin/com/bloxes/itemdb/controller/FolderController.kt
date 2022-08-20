@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin(origins = ["*"])
 @RestController
 @RequestMapping(value = ["/api/v1/folder"])
-class FolderController(private val folderService: FolderService, private val itemService: ItemService) {
-    @PostMapping(
+class FolderController(private val folderService: FolderService) {
+        @PostMapping(
         value = [""],
         produces = ["application/json"],
         consumes = ["application/json"]
@@ -46,13 +46,11 @@ class FolderController(private val folderService: FolderService, private val ite
         produces = ["application/json"]
     )
     fun getListNestedFolders(@PathVariable("folderId") id: String): WebResponse<List<String>> {
-        var undiscovered = mutableListOf(id)
-        var discovered = mutableListOf<String>()
-        folderService.getListNestedFolders(undiscovered, discovered)
+        val discoveredList = folderService.getListNestedFolders(id)
         return WebResponse(
             code = 200,
             status = "OK",
-            data = discovered
+            data = discoveredList
         )
     }
 
@@ -85,27 +83,15 @@ class FolderController(private val folderService: FolderService, private val ite
     @DeleteMapping(
         value = ["/delete-with-nested"]
     )
-    fun deleteFolderWithNestedItem(@PathVariable("folderId") id: String): WebResponse<String> {
-        var undiscovered = mutableListOf(id)
-        var discovered = mutableListOf<String>()
-
-        folderService.getListNestedFolders(undiscovered, discovered)
-        runBlocking {
-            discovered.map { discoveredId ->
-                async {
-                    val listItems = folderService.getFolder(discoveredId).items
-                    listItems.map{ item ->
-                        itemService.deleteItem(item.id)
-                    }
-                    folderService.deleteFolder(discoveredId)
-                }
-            }
+    fun deleteFolderWithNestedFolder(@PathVariable("folderId") id: String): WebResponse<String> {
+        val listNestedFolders = folderService.getListNestedFolders(id)
+        listNestedFolders.map {
+            folderService.deleteFolder(it)
         }
-
         return WebResponse(
             code = 200,
             status = "OK",
-            data = "folder with id: $id is deleted"
+            data = "folder with id: $id is deleted with it nested folders"
         )
     }
 }

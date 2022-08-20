@@ -29,12 +29,4 @@ class Helper {
                 updated_at = folder.updated_at
         )
     }
-
-    fun folderOrNull(folder: Folder): Folder {
-        if(folder === null) {
-            throw NotFoundException()
-        } else {
-            return folder
-        }
-    }
 }

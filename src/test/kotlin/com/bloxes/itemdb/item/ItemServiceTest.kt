@@ -2,15 +2,14 @@ package com.bloxes.itemdb.item
 
 import com.bloxes.itemdb.entity.Item
 import com.bloxes.itemdb.helper.Helper
-import com.bloxes.itemdb.model.WebResponse
 import com.bloxes.itemdb.model.item.CreateItemRequest
 import com.bloxes.itemdb.model.item.ItemResponse
 import com.bloxes.itemdb.model.item.UpdateItemRequest
 import com.bloxes.itemdb.repository.ItemRepository
 import com.bloxes.itemdb.service.impl.ItemServiceImpl
-import com.bloxes.userdb.helper.DateHelper
-import com.bloxes.userdb.helper.RepositoryHelper
-import com.bloxes.userdb.helper.UUIDHelper
+import com.bloxes.itemdb.helper.DateHelper
+import com.bloxes.itemdb.helper.RepositoryHelperImpl
+import com.bloxes.itemdb.helper.UUIDHelper
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.mockito.Mock
@@ -25,7 +24,7 @@ class ItemServiceTest {
     val dateHelper: DateHelper = mock(DateHelper::class.java)
 
     @Mock
-    val repoHelper: RepositoryHelper = mock(RepositoryHelper::class.java)
+    val repoHelper: RepositoryHelperImpl = mock(RepositoryHelperImpl::class.java)
 
     @Mock
     val uuidHelper: UUIDHelper = mock(UUIDHelper::class.java)
@@ -59,18 +58,6 @@ class ItemServiceTest {
         item_total_size = 69420,
         created_at = "24/12/1999",
         updated_at = "24/12/1999"
-    )
-
-    private val dummyWebResponse: WebResponse<ItemResponse> = WebResponse(
-        code = 200,
-        status = "OK",
-        data = dummyItemResponse
-    )
-
-    private val dummyWebResponseString: WebResponse<String> = WebResponse(
-        code = 200,
-        status = "OK",
-        data = "item with id: $id is deleted"
     )
 
     @Test

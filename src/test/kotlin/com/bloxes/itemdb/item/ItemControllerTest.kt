@@ -6,9 +6,6 @@ import com.bloxes.itemdb.model.item.CreateItemRequest
 import com.bloxes.itemdb.model.item.ItemResponse
 import com.bloxes.itemdb.model.item.UpdateItemRequest
 import com.bloxes.itemdb.service.ItemService
-import com.bloxes.itemdb.service.impl.ItemServiceImpl
-import com.bloxes.userdb.helper.DateHelper
-import com.bloxes.userdb.helper.RepositoryHelper
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.mockito.Mock

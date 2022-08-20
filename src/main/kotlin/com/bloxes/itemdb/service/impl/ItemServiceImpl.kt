@@ -7,9 +7,9 @@ import com.bloxes.itemdb.model.item.ItemResponse
 import com.bloxes.itemdb.model.item.UpdateItemRequest
 import com.bloxes.itemdb.repository.ItemRepository
 import com.bloxes.itemdb.service.ItemService
-import com.bloxes.userdb.helper.DateHelper
-import com.bloxes.userdb.helper.RepositoryHelper
-import com.bloxes.userdb.helper.UUIDHelper
+import com.bloxes.itemdb.helper.DateHelper
+import com.bloxes.itemdb.helper.RepositoryHelperImpl
+import com.bloxes.itemdb.helper.UUIDHelper
 import kotlinx.coroutines.*
 import org.springframework.stereotype.Service
 
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service
 class ItemServiceImpl(
     private val itemRepository: ItemRepository,
     private val dateHelper: DateHelper,
-    private val repoHelper: RepositoryHelper,
+    private val repoHelper: RepositoryHelperImpl,
     private val uuidHelper: UUIDHelper,
     private val helper: Helper
 ) : ItemService {
