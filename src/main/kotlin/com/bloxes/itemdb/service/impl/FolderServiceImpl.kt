@@ -7,13 +7,13 @@ import com.bloxes.itemdb.model.folder.FolderResponse
 import com.bloxes.itemdb.model.folder.UpdateFolderRequest
 import com.bloxes.itemdb.repository.FolderRepository
 import com.bloxes.itemdb.service.FolderService
-import com.bloxes.itemdb.repository.ItemRepository
+import com.bloxes.itemdb.repository.FileRepository
 import org.springframework.stereotype.Service
 
 @Service
 class FolderServiceImpl(
     private val folderRepository: FolderRepository,
-    private val itemRepository: ItemRepository,
+    private val fileRepository: FileRepository,
     val dateHelper: DateHelper,
     val repoHelper: RepositoryHelper,
     val uuidHelper: UUIDHelper,
@@ -57,7 +57,7 @@ class FolderServiceImpl(
     override fun deleteFolder(id: String) {
         val nestedItems = repoHelper.findFolderByIdOrThrowNotFound(id).items
         nestedItems.map {
-            itemRepository.deleteById(it.id)
+            fileRepository.deleteById(it.id)
         }
         folderRepository.deleteById(id)
     }

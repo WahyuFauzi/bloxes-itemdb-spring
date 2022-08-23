@@ -6,7 +6,7 @@ import com.bloxes.itemdb.model.folder.CreateFolderRequest
 import com.bloxes.itemdb.model.folder.FolderResponse
 import com.bloxes.itemdb.model.folder.NestedFolder
 import com.bloxes.itemdb.model.folder.UpdateFolderRequest
-import com.bloxes.itemdb.model.item.NestedItem
+import com.bloxes.itemdb.model.file.NestedItem
 import com.bloxes.itemdb.service.FolderService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertInstanceOf

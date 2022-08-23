@@ -5,10 +5,6 @@ import com.bloxes.itemdb.model.folder.CreateFolderRequest
 import com.bloxes.itemdb.model.folder.FolderResponse
 import com.bloxes.itemdb.model.folder.UpdateFolderRequest
 import com.bloxes.itemdb.service.FolderService
-import com.bloxes.itemdb.service.ItemService
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.*
 
 @CrossOrigin(origins = ["*"])

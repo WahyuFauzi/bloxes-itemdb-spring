@@ -1,13 +1,13 @@
-package com.bloxes.itemdb.model.item
+package com.bloxes.itemdb.model.file
 
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
-data class CreateItemRequest (
+data class CreateFileRequest (
         @field:NotBlank
-        val item_name: String,
+        val file_name: String,
         @field:NotNull
         @field:Min(value=0)
-        val item_total_size: Number
+        val file_total_size: Number
 )

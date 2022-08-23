@@ -1,13 +1,12 @@
 package com.bloxes.itemdb.entity
 
 import org.springframework.data.mongodb.core.mapping.Document
-import java.util.*
 
 @Document(collection = "item")
-data class Item (
+data class File (
         val id: String,
-        var item_name: String,
-        var item_total_size: Number,
+        var file_name: String,
+        var file_total_size: Number,
         val created_at: String,
         var updated_at: String
         )

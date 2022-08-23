@@ -1,4 +1,4 @@
-package com.bloxes.itemdb.model.item
+package com.bloxes.itemdb.model.file
 
 class NestedItem (
         val id: String,

@@ -1,21 +1,20 @@
 package com.bloxes.itemdb.helper
 
-import com.bloxes.itemdb.error.NotFoundException
 import com.bloxes.itemdb.entity.Folder
-import com.bloxes.itemdb.entity.Item
+import com.bloxes.itemdb.entity.File
 import com.bloxes.itemdb.model.folder.FolderResponse
-import com.bloxes.itemdb.model.item.ItemResponse
+import com.bloxes.itemdb.model.file.FileResponse
 import org.springframework.stereotype.Component
 
 @Component
 class Helper {
-    fun itemToItemResponse(item: Item): ItemResponse {
-        return ItemResponse(
-                id = item.id,
-                item_name = item.item_name,
-                item_total_size = item.item_total_size,
-                created_at = item.created_at,
-                updated_at = item.updated_at
+    fun itemToFileResponse(file: File): FileResponse {
+        return FileResponse(
+                id = file.id,
+                file_name = file.file_name,
+                file_total_size = file.file_total_size,
+                created_at = file.created_at,
+                updated_at = file.updated_at
         )
     }
 

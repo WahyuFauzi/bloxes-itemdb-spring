@@ -1,7 +1,7 @@
 package com.bloxes.itemdb.repository
 
-import com.bloxes.itemdb.entity.Item
+import com.bloxes.itemdb.entity.File
 import org.springframework.data.mongodb.repository.MongoRepository
 
-interface ItemRepository: MongoRepository<Item, String> {
+interface FileRepository: MongoRepository<File, String> {
 }

@@ -9,9 +9,9 @@ import com.bloxes.itemdb.model.folder.CreateFolderRequest
 import com.bloxes.itemdb.model.folder.FolderResponse
 import com.bloxes.itemdb.model.folder.NestedFolder
 import com.bloxes.itemdb.model.folder.UpdateFolderRequest
-import com.bloxes.itemdb.model.item.NestedItem
+import com.bloxes.itemdb.model.file.NestedItem
 import com.bloxes.itemdb.repository.FolderRepository
-import com.bloxes.itemdb.repository.ItemRepository
+import com.bloxes.itemdb.repository.FileRepository
 import com.bloxes.itemdb.service.impl.FolderServiceImpl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -24,7 +24,7 @@ class FolderServiceTest {
     private val folderRepository = mock(FolderRepository::class.java)
 
     @Mock
-    private val itemRepository = mock(ItemRepository::class.java)
+    private val fileRepository = mock(FileRepository::class.java)
 
     @Mock
     val dateHelper: DateHelper = mock(DateHelper::class.java)
@@ -40,7 +40,7 @@ class FolderServiceTest {
 
     private val helper: Helper = Helper()
 
-    private val folderService = FolderServiceImpl(folderRepository, itemRepository, dateHelper, repoHelper, uuidHelper, helper)
+    private val folderService = FolderServiceImpl(folderRepository, fileRepository, dateHelper, repoHelper, uuidHelper, helper)
 
     private val dummyFolder: Folder = Folder(
         id = id,
@@ -117,7 +117,7 @@ class FolderServiceTest {
     fun deleteFolder() {
         folderService.deleteFolder(id)
         verify(folderRepository).deleteById(id)
-        verify(itemRepository, atLeast(1)).deleteById("1")
+        verify(fileRepository, atLeast(1)).deleteById("1")
     }
 
 }

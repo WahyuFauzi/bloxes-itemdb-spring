@@ -1,9 +1,8 @@
 package com.bloxes.itemdb.entity
 
 import com.bloxes.itemdb.model.folder.NestedFolder
-import com.bloxes.itemdb.model.item.NestedItem
+import com.bloxes.itemdb.model.file.NestedItem
 import org.springframework.data.mongodb.core.mapping.Document
-import java.util.Date
 
 @Document(collection = "folder")
 data class Folder (

@@ -1,6 +1,6 @@
 package com.bloxes.itemdb.model.folder
 
-import com.bloxes.itemdb.model.item.NestedItem
+import com.bloxes.itemdb.model.file.NestedItem
 import javax.validation.constraints.NotBlank
 
 data class UpdateFolderRequest(

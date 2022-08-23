@@ -1,17 +1,17 @@
 package com.bloxes.itemdb.helper
 
 import com.bloxes.itemdb.entity.Folder
-import com.bloxes.itemdb.entity.Item
+import com.bloxes.itemdb.entity.File
 import com.bloxes.itemdb.error.NotFoundException
 import com.bloxes.itemdb.repository.FolderRepository
-import com.bloxes.itemdb.repository.ItemRepository
+import com.bloxes.itemdb.repository.FileRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 
 @Component
-class RepositoryHelperImpl(private val itemRepository: ItemRepository, private val folderRepository: FolderRepository): RepositoryHelper {
-    override fun findItemByIdOrThrowNotFound(id: String): Item {
-        val item = itemRepository.findByIdOrNull(id)
+class RepositoryHelperImpl(private val fileRepository: FileRepository, private val folderRepository: FolderRepository): RepositoryHelper {
+    override fun findItemByIdOrThrowNotFound(id: String): File {
+        val item = fileRepository.findByIdOrNull(id)
         if (item == null) {
             throw NotFoundException()
         } else {

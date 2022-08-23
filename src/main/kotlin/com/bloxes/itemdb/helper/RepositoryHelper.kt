@@ -1,12 +1,10 @@
 package com.bloxes.itemdb.helper
 
 import com.bloxes.itemdb.entity.Folder
-import com.bloxes.itemdb.entity.Item
-import com.bloxes.itemdb.error.NotFoundException
-import org.springframework.data.repository.findByIdOrNull
+import com.bloxes.itemdb.entity.File
 
 interface RepositoryHelper {
-    fun findItemByIdOrThrowNotFound(id: String): Item
+    fun findItemByIdOrThrowNotFound(id: String): File
 
     fun findFolderByIdOrThrowNotFound(id: String): Folder
 
