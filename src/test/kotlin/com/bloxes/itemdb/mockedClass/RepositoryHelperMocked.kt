@@ -4,12 +4,12 @@ import com.bloxes.itemdb.entity.Folder
 import com.bloxes.itemdb.entity.File
 import com.bloxes.itemdb.helper.RepositoryHelper
 import com.bloxes.itemdb.model.folder.NestedFolder
-import com.bloxes.itemdb.model.file.NestedItem
+import com.bloxes.itemdb.model.file.NestedFile
 
 class RepositoryHelperMocked: RepositoryHelper {
 
     val nestedFolders = listOf(NestedFolder(id = "1", folder_name = "folder1"), NestedFolder(id = "2", folder_name = "folder2"))
-    val items = listOf(NestedItem(id = "1", item_name = "item1"), NestedItem(id = "2", item_name = "item2"))
+    val files = listOf(NestedFile(id = "1", file_name = "item1"), NestedFile(id = "2", file_name = "item2"))
 
     override fun findItemByIdOrThrowNotFound(id: String): File {
          return File(
@@ -26,7 +26,7 @@ class RepositoryHelperMocked: RepositoryHelper {
             id = "id",
             folder_name = "dummy folder",
             nested_folders = nestedFolders,
-            items = items,
+            files = files,
             created_at = "24/12/1999",
             updated_at = "24/12/1999"
         )

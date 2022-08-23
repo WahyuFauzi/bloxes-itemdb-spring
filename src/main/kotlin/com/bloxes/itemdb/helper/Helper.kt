@@ -23,7 +23,7 @@ class Helper {
                 id = folder.id,
                 folder_name = folder.folder_name,
                 nested_folders = folder.nested_folders,
-                items = folder.items,
+                files = folder.files,
                 created_at = folder.created_at,
                 updated_at = folder.updated_at
         )

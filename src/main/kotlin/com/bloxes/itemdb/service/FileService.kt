@@ -5,11 +5,11 @@ import com.bloxes.itemdb.model.file.FileResponse
 import com.bloxes.itemdb.model.file.UpdateFileRequest
 
 interface FileService {
-    fun createItem(createFileRequest: CreateFileRequest): FileResponse
+    fun createFile(createFileRequest: CreateFileRequest): FileResponse
 
-    fun getItem(id: String): FileResponse
+    fun getFile(id: String): FileResponse
 
-    fun updateItem(id: String, updateFileRequest: UpdateFileRequest): FileResponse
+    fun updateFile(id: String, updateFileRequest: UpdateFileRequest): FileResponse
 
-    fun deleteItem(id: String)
+    fun deleteFile(id: String)
 }

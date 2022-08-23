@@ -7,7 +7,6 @@ import org.springframework.web.context.request.WebRequest
 import org.springframework.web.context.request.WebRequestInterceptor
 import java.lang.Exception
 
-@Component
 class AuthInterceptor: WebRequestInterceptor {
 
     @Value("\${environment.secret}")

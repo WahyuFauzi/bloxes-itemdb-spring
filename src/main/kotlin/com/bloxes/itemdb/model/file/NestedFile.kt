@@ -1,6 +1,6 @@
 package com.bloxes.itemdb.model.file
 
-class NestedItem (
+class NestedFile (
         val id: String,
-        val item_name: String
+        val file_name: String
 )

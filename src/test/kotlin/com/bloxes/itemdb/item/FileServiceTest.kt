@@ -31,7 +31,7 @@ class FileServiceTest {
 
     private val helper: Helper = Helper()
 
-    private val itemService: FileServiceImpl = FileServiceImpl(fileRepository, dateHelper, repoHelper, uuidHelper, helper)
+    private val fileService: FileServiceImpl = FileServiceImpl(fileRepository, dateHelper, repoHelper, uuidHelper, helper)
 
     private val id = "id"
 
@@ -62,14 +62,14 @@ class FileServiceTest {
 
     @Test
     fun initTest() {
-        assertInstanceOf(FileServiceImpl::class.java, itemService)
+        assertInstanceOf(FileServiceImpl::class.java, fileService)
     }
 
     @Test
     fun createItem() {
         `when`(uuidHelper.getRandomUUID()).thenReturn(id)
         `when`(dateHelper.getCurrentDateInString()).thenReturn("24/12/1999")
-        val fileResponse: FileResponse = itemService.createItem(dummyCreateFileRequest)
+        val fileResponse: FileResponse = fileService.createFile(dummyCreateFileRequest)
         assertEquals(fileResponse, dummyFileResponse)
         verify(uuidHelper).getRandomUUID()
         verify(dateHelper, times(2)).getCurrentDateInString()
@@ -79,7 +79,7 @@ class FileServiceTest {
     @Test
     fun getItem() {
         `when`(repoHelper.findItemByIdOrThrowNotFound(id)).thenReturn(file)
-        val fileResponse: FileResponse = itemService.getItem(id)
+        val fileResponse: FileResponse = fileService.getFile(id)
         assertEquals(fileResponse, dummyFileResponse)
         verify(repoHelper).findItemByIdOrThrowNotFound(id)
     }
@@ -88,7 +88,7 @@ class FileServiceTest {
     fun updateItem() {
         `when`(repoHelper.findItemByIdOrThrowNotFound(id)).thenReturn(file)
         `when`(dateHelper.getCurrentDateInString()).thenReturn("24/12/1999")
-        val fileResponse: FileResponse = itemService.updateItem(id, dummyUpdateFileRequest)
+        val fileResponse: FileResponse = fileService.updateFile(id, dummyUpdateFileRequest)
         assertEquals(fileResponse, dummyFileResponse)
         verify(repoHelper).findItemByIdOrThrowNotFound(id)
         verify(dateHelper).getCurrentDateInString()

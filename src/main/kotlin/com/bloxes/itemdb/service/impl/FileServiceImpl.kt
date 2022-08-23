@@ -21,7 +21,7 @@ class FileServiceImpl(
     private val uuidHelper: UUIDHelper,
     private val helper: Helper
 ) : FileService {
-    override fun createItem(createFileRequest: CreateFileRequest): FileResponse {
+    override fun createFile(createFileRequest: CreateFileRequest): FileResponse {
         val file = File(
             id = uuidHelper.getRandomUUID(),
             file_name = createFileRequest.file_name,
@@ -33,12 +33,12 @@ class FileServiceImpl(
         return helper.itemToFileResponse(file)
     }
 
-    override fun getItem(id: String): FileResponse {
+    override fun getFile(id: String): FileResponse {
         val item = repoHelper.findItemByIdOrThrowNotFound(id)
         return helper.itemToFileResponse(item)
     }
 
-    override fun updateItem(id: String, updateFileRequest: UpdateFileRequest): FileResponse {
+    override fun updateFile(id: String, updateFileRequest: UpdateFileRequest): FileResponse {
         val item = repoHelper.findItemByIdOrThrowNotFound(id)
         item.apply {
             file_name = updateFileRequest.file_name
@@ -48,7 +48,7 @@ class FileServiceImpl(
         return helper.itemToFileResponse(item)
     }
 
-    override fun deleteItem(id: String) {
+    override fun deleteFile(id: String) {
         runBlocking {
             launch {
                 fileRepository.deleteById(id)

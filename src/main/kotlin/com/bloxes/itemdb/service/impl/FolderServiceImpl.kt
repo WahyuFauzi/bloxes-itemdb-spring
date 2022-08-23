@@ -24,7 +24,7 @@ class FolderServiceImpl(
             id = uuidHelper.getRandomUUID(),
             folder_name = createFolderRequest.folder_name,
             nested_folders = listOf(),
-            items = listOf(),
+            files = listOf(),
             created_at = dateHelper.getCurrentDateInString(),
             updated_at = dateHelper.getCurrentDateInString()
         )
@@ -48,14 +48,14 @@ class FolderServiceImpl(
         val folder = repoHelper.findFolderByIdOrThrowNotFound(id)
         folder.folder_name = updateFolderRequest.folder_name
         folder.nested_folders = updateFolderRequest.nested_folders
-        folder.items = updateFolderRequest.items
+        folder.files = updateFolderRequest.files
         folder.updated_at = dateHelper.getCurrentDateInString()
         folderRepository.save(folder)
         return helper.folderToFolderResponse(folder)
     }
 
     override fun deleteFolder(id: String) {
-        val nestedItems = repoHelper.findFolderByIdOrThrowNotFound(id).items
+        val nestedItems = repoHelper.findFolderByIdOrThrowNotFound(id).files
         nestedItems.map {
             fileRepository.deleteById(it.id)
         }

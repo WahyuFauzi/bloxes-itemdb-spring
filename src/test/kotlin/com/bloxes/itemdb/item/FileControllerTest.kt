@@ -1,6 +1,6 @@
 package com.bloxes.itemdb.item
 
-import com.bloxes.itemdb.controller.ItemController
+import com.bloxes.itemdb.controller.FileController
 import com.bloxes.itemdb.model.WebResponse
 import com.bloxes.itemdb.model.file.CreateFileRequest
 import com.bloxes.itemdb.model.file.FileResponse
@@ -16,7 +16,7 @@ class FileControllerTest {
     @Mock
     val fileService: FileService = mock(FileService::class.java)
 
-    private val itemController: ItemController = ItemController(fileService)
+    private val fileController: FileController = FileController(fileService)
 
     private val id = "id"
 
@@ -46,42 +46,42 @@ class FileControllerTest {
     private val dummyWebResponseString: WebResponse<String> = WebResponse(
         code = 200,
         status = "OK",
-        data = "item with id: $id is deleted"
+        data = "file with id: $id is deleted"
     )
 
     @Test
     fun initTest() {
-        assertInstanceOf(ItemController::class.java, itemController)
+        assertInstanceOf(FileController::class.java, fileController)
     }
 
     @Test
-    fun createItem() {
-        `when`(fileService.createItem(dummyCreateFileRequest)).thenReturn(dummyFileResponse)
-        val webResponse: WebResponse<FileResponse> = itemController.createItem(dummyCreateFileRequest)
-        verify(fileService).createItem(dummyCreateFileRequest)
+    fun createFile() {
+        `when`(fileService.createFile(dummyCreateFileRequest)).thenReturn(dummyFileResponse)
+        val webResponse: WebResponse<FileResponse> = fileController.createFile(dummyCreateFileRequest)
+        verify(fileService).createFile(dummyCreateFileRequest)
         assertEquals(webResponse, dummyWebResponse)
     }
 
     @Test
-    fun getItem() {
-        `when`(fileService.getItem(id)).thenReturn(dummyFileResponse)
-        val webResponse: WebResponse<FileResponse> = itemController.getItem(id)
-        verify(fileService).getItem(id)
+    fun getFile() {
+        `when`(fileService.getFile(id)).thenReturn(dummyFileResponse)
+        val webResponse: WebResponse<FileResponse> = fileController.getFile(id)
+        verify(fileService).getFile(id)
         assertEquals(webResponse, dummyWebResponse)
     }
 
     @Test
-    fun updateItem() {
-        `when`(fileService.updateItem(id, dummyUpdateFileRequest)).thenReturn(dummyFileResponse)
-        val webResponse: WebResponse<FileResponse> = itemController.updateItem(id, dummyUpdateFileRequest)
-        verify(fileService).updateItem(id, dummyUpdateFileRequest)
+    fun updateFile() {
+        `when`(fileService.updateFile(id, dummyUpdateFileRequest)).thenReturn(dummyFileResponse)
+        val webResponse: WebResponse<FileResponse> = fileController.updateFile(id, dummyUpdateFileRequest)
+        verify(fileService).updateFile(id, dummyUpdateFileRequest)
         assertEquals(webResponse, dummyWebResponse)
     }
 
     @Test
-    fun deleteItem() {
-        val webResponse: WebResponse<String> = itemController.deleteItem(id)
-        verify(fileService).deleteItem(id)
+    fun deleteFile() {
+        val webResponse: WebResponse<String> = fileController.deleteFile(id)
+        verify(fileService).deleteFile(id)
         assertEquals(webResponse, dummyWebResponseString)
     }
 }

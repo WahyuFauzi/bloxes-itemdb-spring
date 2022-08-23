@@ -17,6 +17,7 @@ class FolderController(private val folderService: FolderService) {
         consumes = ["application/json"]
     )
     fun createFolder(@RequestBody body: CreateFolderRequest): WebResponse<FolderResponse> {
+            println(body)
         val folderResponse = folderService.createFolder(body)
         return WebResponse(
             code = 200,

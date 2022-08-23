@@ -7,18 +7,18 @@ import com.bloxes.itemdb.model.file.UpdateFileRequest
 import com.bloxes.itemdb.service.FileService
 import org.springframework.web.bind.annotation.*
 
-@CrossOrigin(origins = ["*"])
+@CrossOrigin(origins = arrayOf("*"))
 @RestController
-@RequestMapping(value = ["/api/v1/item"])
-class ItemController(private val fileService: FileService) {
+@RequestMapping(value = ["/api/v1/file"])
+class FileController(private val fileService: FileService) {
 
     @PostMapping(
             value = [""],
             produces = ["application/json"],
             consumes = ["application/json"]
     )
-    fun createItem(@RequestBody body: CreateFileRequest): WebResponse<FileResponse> {
-        val itemResponse = fileService.createItem(body)
+    fun createFile(@RequestBody body: CreateFileRequest): WebResponse<FileResponse> {
+        val itemResponse = fileService.createFile(body)
         return WebResponse(
                 code = 200,
                 status = "OK",
@@ -30,8 +30,8 @@ class ItemController(private val fileService: FileService) {
             value = [""],
             produces = ["application/json"]
     )
-    fun getItem(@RequestParam("fileId") id: String): WebResponse<FileResponse> {
-        val itemResponse = fileService.getItem(id)
+    fun getFile(@RequestParam("fileId") id: String): WebResponse<FileResponse> {
+        val itemResponse = fileService.getFile(id)
         return WebResponse(
                 code = 200,
                 status = "OK",
@@ -44,8 +44,8 @@ class ItemController(private val fileService: FileService) {
             produces = ["application/json"],
             consumes = ["application/json"]
     )
-    fun updateItem(@RequestParam("fileId") id: String, @RequestBody updateFileRequest: UpdateFileRequest): WebResponse<FileResponse> {
-        val itemResponse = fileService.updateItem(id, updateFileRequest)
+    fun updateFile(@RequestParam("fileId") id: String, @RequestBody updateFileRequest: UpdateFileRequest): WebResponse<FileResponse> {
+        val itemResponse = fileService.updateFile(id, updateFileRequest)
         return WebResponse(
                 code = 200,
                 status = "OK",
@@ -56,13 +56,12 @@ class ItemController(private val fileService: FileService) {
     @DeleteMapping(
             value = [""]
     )
-    fun deleteItem(@RequestParam("fileId") id: String): WebResponse<String> {
-        fileService.deleteItem(id)
+    fun deleteFile(@RequestParam("fileId") id: String): WebResponse<String> {
+        fileService.deleteFile(id)
         return WebResponse(
                 code = 200,
                 status = "OK",
                 data = "file with id: $id is deleted"
         )
-
     }
 }

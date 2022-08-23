@@ -9,7 +9,7 @@ import com.bloxes.itemdb.model.folder.CreateFolderRequest
 import com.bloxes.itemdb.model.folder.FolderResponse
 import com.bloxes.itemdb.model.folder.NestedFolder
 import com.bloxes.itemdb.model.folder.UpdateFolderRequest
-import com.bloxes.itemdb.model.file.NestedItem
+import com.bloxes.itemdb.model.file.NestedFile
 import com.bloxes.itemdb.repository.FolderRepository
 import com.bloxes.itemdb.repository.FileRepository
 import com.bloxes.itemdb.service.impl.FolderServiceImpl
@@ -46,7 +46,7 @@ class FolderServiceTest {
         id = id,
         folder_name = "dummy folder",
         nested_folders = listOf(),
-        items = listOf(),
+        files = listOf(),
         created_at = "24/12/1999",
         updated_at = "24/12/1999"
     )
@@ -55,7 +55,7 @@ class FolderServiceTest {
         id = id,
         folder_name = "dummy folder",
         nested_folders = listOf(),
-        items = listOf(),
+        files = listOf(),
         created_at = "24/12/1999",
         updated_at = "24/12/1999"
     )
@@ -64,21 +64,21 @@ class FolderServiceTest {
         id = id,
         folder_name = "dummy folder",
         nested_folders = repoHelper.nestedFolders,
-        items = repoHelper.items,
+        files = repoHelper.files,
         created_at = "24/12/1999",
         updated_at = "24/12/1999"
     )
 
     private val dummyListFolder = mutableListOf<NestedFolder>()
 
-    private val dummyListItem = mutableListOf<NestedItem>()
+    private val dummyListItem = mutableListOf<NestedFile>()
 
     private val dummyCreateFolderRequest: CreateFolderRequest = CreateFolderRequest(folder_name = "dummy folder")
 
     private val dummyUpdateFolderRequest: UpdateFolderRequest = UpdateFolderRequest(
         folder_name = "dummy folder",
         nested_folders = dummyListFolder,
-        items = dummyListItem
+        files = dummyListItem
     )
 
     @Test
